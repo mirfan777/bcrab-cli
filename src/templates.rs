@@ -4,14 +4,14 @@ use crate::models::Template;
 pub fn get_templates() -> Vec<Template> {
     vec![
         Template::new(
-            2,
+            0,
             "boiled-crab-svelte",
             "https://github.com/mirfan777/boiled-crab-svelte",
             "Svelte Frontend",
         )
         .with_branches(vec!["SPA", "SSR"]),
         Template::new(
-            3,
+            1,
             "boiled-crab",
             "https://github.com/mirfan777/boiled-crab",
             "API Server",
