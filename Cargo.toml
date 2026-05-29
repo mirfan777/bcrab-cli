@@ -3,6 +3,9 @@ name = "bcrab-cli"
 version = "0.1.0"
 edition = "2021"
 
+description = "Just A boilerplate for axum "
+license = "MIT"
+
 [[bin]]
 name = "boil"
 path = "src/main.rs"
