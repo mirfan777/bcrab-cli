@@ -1,0 +1,17 @@
+[package]
+name = "bcrab-cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "boil"
+path = "src/main.rs"
+
+[lib]
+name = "bcrab_cli"
+path = "src/lib.rs"
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] }
+dialoguer = "0.11"
+indicatif = "0.17"
