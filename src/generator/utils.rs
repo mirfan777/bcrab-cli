@@ -1,3 +1,5 @@
+use std::path::Path;
+
 /// Converts a string to title case (first letter uppercase)
 pub fn to_title_case(s: &str) -> String {
     s.chars()
@@ -10,4 +12,9 @@ pub fn to_title_case(s: &str) -> String {
             }
         })
         .collect()
+}
+
+/// Checks if CRAB file exists in the current directory
+pub fn crab_file_exists() -> bool {
+    Path::new("CRAB").exists()
 }

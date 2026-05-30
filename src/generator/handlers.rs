@@ -1,9 +1,14 @@
-use crate::error::Result;
+use crate::error::{CliError, Result};
 use crate::ui::{print_info, print_success, LoadingSpinner};
 use super::file_creators::*;
-use super::utils::to_title_case;
+use super::utils::{to_title_case, crab_file_exists};
 
 pub fn handle_make_resources(name: String) -> Result<()> {
+    // Check if CRAB file exists
+    if !crab_file_exists() {
+        return Err(CliError::MissingCrabFile);
+    }
+    
     print_info(&format!("Generating resource: {}\n", &name));
 
     let spinner = LoadingSpinner::new(&format!("Creating {} resource scaffold...", name));
@@ -44,6 +49,11 @@ pub fn handle_make_resources(name: String) -> Result<()> {
 }
 
 pub fn handle_make_dto(name: String) -> Result<()> {
+    // Check if CRAB file exists
+    if !crab_file_exists() {
+        return Err(CliError::MissingCrabFile);
+    }
+    
     print_info(&format!("Generating DTO: {}\n", &name));
 
     let spinner = LoadingSpinner::new(&format!("Creating {} DTO...", name));

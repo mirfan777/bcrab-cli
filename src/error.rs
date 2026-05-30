@@ -9,6 +9,7 @@ pub enum CliError {
     CloneError(String),
     CleanupError(String),
     FileAlreadyExists(String),
+    MissingCrabFile,
 }
 
 impl fmt::Display for CliError {
@@ -20,9 +21,11 @@ impl fmt::Display for CliError {
             CliError::CloneError(msg) => write!(f, "Clone Error: {}", msg),
             CliError::CleanupError(msg) => write!(f, "Cleanup Error: {}", msg),
             CliError::FileAlreadyExists(msg) => write!(f, "File Already Exists: {}", msg),
+            CliError::MissingCrabFile => write!(f, "Missing CRAB file: This project is not a CRAB project. Run 'boil create new <name>' to create a new CRAB project, or add a CRAB file to the project root."),
         }
     }
 }
+
 
 impl From<io::Error> for CliError {
     fn from(err: io::Error) -> Self {
