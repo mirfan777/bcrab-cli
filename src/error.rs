@@ -8,6 +8,7 @@ pub enum CliError {
     InvalidSelection,
     CloneError(String),
     CleanupError(String),
+    FileAlreadyExists(String),
 }
 
 impl fmt::Display for CliError {
@@ -18,6 +19,7 @@ impl fmt::Display for CliError {
             CliError::InvalidSelection => write!(f, "Invalid selection made"),
             CliError::CloneError(msg) => write!(f, "Clone Error: {}", msg),
             CliError::CleanupError(msg) => write!(f, "Cleanup Error: {}", msg),
+            CliError::FileAlreadyExists(msg) => write!(f, "File Already Exists: {}", msg),
         }
     }
 }

@@ -1,4 +1,4 @@
-use bcrab_cli::{handle_create_new, ui};
+use bcrab_cli::{handle_create_new, handle_make_resources, handle_make_dto, ui};
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
@@ -16,6 +16,11 @@ enum Commands {
         #[command(subcommand)]
         subcommand: CreateSubcommand,
     },
+    /// Generate boilerplate code
+    Make {
+        #[command(subcommand)]
+        subcommand: MakeSubcommand,
+    },
 }
 
 #[derive(Subcommand)]
@@ -27,12 +32,30 @@ enum CreateSubcommand {
     },
 }
 
+#[derive(Subcommand)]
+enum MakeSubcommand {
+    /// Generate a complete resource with DTO, Service, Repository, Entity, and Handlers
+    Resources {
+        /// Name of the resource (e.g., Admin, Product, Order)
+        name: String,
+    },
+    /// Generate only DTO for a resource
+    Dto {
+        /// Name of the resource (e.g., Admin, Product, Order)
+        name: String,
+    },
+}
+
 fn main() {
     let cli = Cli::parse();
 
     let result = match cli.command {
         Commands::Create { subcommand } => match subcommand {
             CreateSubcommand::New { name } => handle_create_new(name),
+        },
+        Commands::Make { subcommand } => match subcommand {
+            MakeSubcommand::Resources { name } => handle_make_resources(name),
+            MakeSubcommand::Dto { name } => handle_make_dto(name),
         },
     };
 
